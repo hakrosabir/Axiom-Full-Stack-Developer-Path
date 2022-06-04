@@ -40,6 +40,19 @@ function showSuccess(input){
 }
 
 
+// create a function to check a valid email
+
+function isValidEmail(email){
+    return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+
+}
+
+
+
 
 // check to see if fields meet required field requirements 
 
@@ -64,7 +77,15 @@ form.addEventListener('submit', function(e){
     if(email.value === '')
     {
         showError(email ,' Email is required');
-    }else
+    }
+    else if (!isValidEmail(email.value))
+    {
+
+        showError(email,'Email is invalid')
+
+    }
+    
+    else
     {
         showSuccess(email);
     }
